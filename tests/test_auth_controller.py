@@ -1,6 +1,4 @@
-import requests
-import pytest
-
+from routes import AUTH
 import requests
 
 
@@ -11,7 +9,7 @@ class TestAuthController:
         """Setup for the tests.
         :return: None
         """
-        self.auth_url = 'https://softserve2020romeo.herokuapp.com/api/auth'
+        self.auth_url = AUTH
 
     def get_token(self, credentials):
         authorization = requests.post(url=self.auth_url, json=credentials)
