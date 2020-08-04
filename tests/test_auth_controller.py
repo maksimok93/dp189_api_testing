@@ -1,8 +1,8 @@
 import pytest
 import requests
-from tests.config import get_test_data
-from routes import AUTH
-from tests.config import BaseConfig
+from dp189_api_testing.tests.config import get_test_data
+from dp189_api_testing.routes import AUTH
+from dp189_api_testing.tests.config import BaseConfig
 
 
 class TestAuthController(BaseConfig):
