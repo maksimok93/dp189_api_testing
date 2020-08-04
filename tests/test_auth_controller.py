@@ -1,6 +1,7 @@
 """Login tests module."""
 
 import requests
+from routes import AUTH
 
 
 class TestLogin:
@@ -11,7 +12,7 @@ class TestLogin:
 
         :return: None
         """
-        self.auth_url = 'https://softserve2020romeo.herokuapp.com/api/auth'
+        self.auth_url = AUTH
 
     def test_admin_login(self) -> None:
         """Testing administrator login.
