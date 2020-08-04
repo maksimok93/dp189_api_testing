@@ -1,55 +1,45 @@
-"""Login tests module."""
-
+import pytest
 import requests
+from tests.config import get_test_data
 from routes import AUTH
+from tests.config import BaseConfig
 
 
-class TestLogin:
+class TestAuthController(BaseConfig):
     """Methods for testing users with different access rights."""
 
     def setup(self) -> None:
         """Setup for the tests.
 
+
         :return: None
         """
         self.auth_url = AUTH
 
-    def test_admin_login(self) -> None:
+    @pytest.mark.parametrize('email,password', get_test_data('test_auth-controller_login.csv'))
+    def test_login(self, email: str, password: str) -> None:
         """Testing administrator login.
 
+
+        :param email:str
+        :param password:str
         :return: None
         """
-        admin_credentials_json = {"email": "adminsoft2020@gmail.com", "password": "qwerty"}
-        admin_login = requests.post(url=self.auth_url, json=admin_credentials_json)
+        credentials = {"email": email, "password": password}
+        admin_login = requests.post(url=self.auth_url, json=credentials)
 
         assert admin_login.status_code == 200
 
-    def test_mentor_login(self) -> None:
-        """Testing mentor login.
+    @pytest.mark.parametrize('email,password', get_test_data('test_auth-controller_login.csv'))
+    def test_logout(self, email: str, password: str) -> None:
+        """Testing administrator logout.
 
+
+        :param email:str
+        :param password:str
         :return: None
         """
-        mentor_credentials_json = {"email": "martyn@nmu.one", "password": "XSRLvaIt"}
-        mentor_login = requests.post(url=self.auth_url, json=mentor_credentials_json)
-
-        assert mentor_login.status_code == 200
-
-    def test_student_login(self) -> None:
-        """Testing student login.
-
-        :return: None
-        """
-        student_credentials_json = {"email": "kuprienko.v@nmu.one", "password": "OvByYxjN"}
-        student_login = requests.post(url=self.auth_url, json=student_credentials_json)
-
-        assert student_login.status_code == 200
-
-    def test_login_invalid_data(self) -> None:
-        """Testing login without access rights.
-
-        :return: None
-        """
-        invalid_credentials_json = {"email": "invalid", "password": "invalid"}
-        invalid_login = requests.post(url=self.auth_url, json=invalid_credentials_json)
-
-        assert invalid_login.status_code == 403
+        credentials = {"email": email, "password": password}
+        token = self.get_token(credentials)
+        admin_logout = requests.delete(url=self.auth_url, headers={'Authorization': f'{token}'})
+        assert admin_logout.status_code == 200
