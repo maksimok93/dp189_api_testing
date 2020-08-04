@@ -11,7 +11,10 @@ class TestAuthController:
         """
         self.auth_url = AUTH
 
-    def get_token(self, credentials):
+    def get_token(self, credentials) -> str:
+        """Method which returns token of user authorization.
+        :return: str
+        """
         authorization = requests.post(url=self.auth_url, json=credentials)
         return authorization.headers['Authorization']
 
@@ -28,7 +31,10 @@ class TestAdminAuth(TestAuthController):
 
         assert admin_login.status_code == 200
 
-    def test_admin_logout(self):
+    def test_admin_logout(self) -> None:
+        """Testing administrator logout.
+        :return: None
+        """
         token = self.get_token(self.admin_credentials_json)
         admin_logout = requests.delete(url=self.auth_url, headers={'Authorization': f'{token}'})
         assert admin_logout.status_code == 200
@@ -45,7 +51,10 @@ class TestMentorAuth(TestAuthController):
 
         assert mentor_login.status_code == 200
 
-    def test_mentor_logout(self):
+    def test_mentor_logout(self) ->None:
+        """Testing mentor logout.
+        :return: None
+        """
         token = self.get_token(self.mentor_credentials_json)
         mentor_logout = requests.delete(url=self.auth_url, headers={'Authorization': f'{token}'})
         assert mentor_logout.status_code == 200
@@ -63,6 +72,9 @@ class TestStudentAuth(TestAuthController):
         assert student_login.status_code == 200
 
     def test_student_logout(self) -> None:
+        """Testing student logout.
+        :return: None
+        """
         token = self.get_token(self.student_credentials_json)
         student_logout = requests.delete(url=self.auth_url, headers={'Authorization': f'{token}'})
         assert student_logout.status_code == 200
