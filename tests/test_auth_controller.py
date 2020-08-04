@@ -73,6 +73,7 @@ class TestStudentAuth(TestAuthController):
 class TestInvalidAuth(TestAuthController):
     invalid_credentials_json = {"email": "invalid", "password": "invalid"}
 
+
     def test_login_invalid_data(self) -> None:
         """Testing login without access rights.
         :return: None
