@@ -1,6 +1,8 @@
 import pytest
 import requests
-from tests.config import get_test_data
+
+from models import auth_cotroller_post_response_body, responseDecoder, auth_controller_post_response_status_code
+from tests.config import get_test_data, get_test_data_json
 from routes import AUTH
 from tests.config import BaseConfig
 
@@ -35,3 +37,13 @@ class TestAuthController(BaseConfig):
         token = self.get_token(credentials)
         admin_logout = requests.delete(url=AUTH, headers={'Authorization': f'{token}'})
         assert admin_logout.status_code == 200
+
+    def test_auth_controller_post_response_body(self) -> None:
+        status_code = auth_controller_post_response_status_code()
+        expected_status_code = 200
+        assert status_code == expected_status_code
+
+        credentials = {"email": "kuprienko.v@nmu.one", "password": "OvByYxjN"}
+        user = auth_cotroller_post_response_body(credentials)
+        expected_user = responseDecoder(get_test_data_json('response_test.json'))
+        assert user == expected_user
