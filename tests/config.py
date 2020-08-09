@@ -1,14 +1,15 @@
+import json
 import requests
 import csv
+from routes import AUTH
 
 
-class BaseConfig:
-    def get_token(self, credentials) -> str:
-        """Method which returns token of user authorization.
-        :return: str
-        """
-        authorization = requests.post(url=self.auth_url, json=credentials)
-        return authorization.headers['Authorization']
+def get_token(credentials) -> str:
+    """Method which returns token of user authorization.
+    :return: str
+    """
+    authorization = requests.post(url=AUTH, json=credentials)
+    return authorization.headers['Authorization']
 
 
 def get_test_data(file_name: str) -> list:
@@ -22,3 +23,8 @@ def get_test_data(file_name: str) -> list:
         for row in reader:
             test_data_list.append(tuple(row[0].strip('][').split(';')))
         return test_data_list
+
+
+def get_test_data_json(file_path):
+    with open(f'../testsData/{file_path}') as file:
+        return json.load(file)
