@@ -26,6 +26,6 @@ def get_test_data(file_name: str) -> list:
         return test_data_list
 
 
-def get_test_data_json(file_name: str):
+def get_test_data_json(file_name: list):
     with open(f'../expectedJson/{file_name}') as file:
         return json.load(file)
