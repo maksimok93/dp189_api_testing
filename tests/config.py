@@ -1,5 +1,4 @@
 import json
-
 import requests
 import csv
 from routes import AUTH
@@ -26,6 +25,6 @@ def get_test_data(file_name: str) -> list:
         return test_data_list
 
 
-def get_test_data_json(file_name: list):
-    with open(f'../expectedJson/{file_name}') as file:
+def get_test_data_json(file_path):
+    with open(f'../testsData/{file_path}') as file:
         return json.load(file)

@@ -46,5 +46,5 @@ class TestAuthController:
         assert status_code == int(expected_status_code)
 
         user = post_response_body(AUTH, credentials)
-        expected_user = responseDecoder(get_test_data_json(expected_response))
+        expected_user = responseDecoder(get_test_data_json(f'expectedJson/{expected_response}'))
         assert user == expected_user
