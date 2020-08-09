@@ -40,7 +40,8 @@ class TestAuthController:
 
     @pytest.mark.parametrize('email,password,expected_status_code,expected_response',
                              get_test_data('test_auth_controller.csv'))
-    def test_auth_controller_user(self, email, password, expected_status_code, expected_response) -> None:
+    def test_auth_controller_user(self, email: str, password: str,
+                                  expected_status_code: str, expected_response: str) -> None:
         credentials = {"email": email, "password": password}
         status_code = auth_controller_post_response_status_code(AUTH, credentials)
         assert status_code == int(expected_status_code)
