@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 03, 2020 at 04:28 PM
+-- Generation Time: Aug 10, 2020 at 09:50 AM
 -- Server version: 5.7.31-0ubuntu0.18.04.1
 -- PHP Version: 7.2.24-0ubuntu0.18.04.6
 
@@ -46,7 +46,7 @@ INSERT INTO `account` (`id`, `role`, `first_name`, `last_name`, `email`, `passwo
 (8, 1, 'firstNamesd', 'lastName', 'test111@mail.com', '1234', '1234', 0),
 (23, 2, 'Mike', 'Dzihovskyi', 'mike@gmail.com', '0afb051eaab31c94e2505428e5b709d5337e101f0db9796e17e0af911d1428d0', 'XXmxIQ7cZGxh0tQ', 1),
 (24, 2, 'CiCiPlusi', 'Ci', 'plusi@mentor.ua', '684ab1397595c021ee8e5973d8a0f0f35bbe8a4d7d6d3fe0bdef7b40c360dd55', 'tg0ceEhm6i6bOGv', 1),
-(25, 2, 'Kolya', 'Jsovich', 'kolya@gmail.com', '820668d713a7dbd6f47c4decede657d57c17dc39a8586f55b412cf31a3fd8932', '9ZIVmvBnudw6aD1', 0),
+(25, 2, 'Kolya', 'Jsovich', 'kolya@gmail.com', '1b95b720e53156949ba19d06c648165c0c10fb223b8eb8799fb41a216d0d6723', '9ZIVmvBnudw6aD1', 0),
 (26, 2, 'Ivan', 'Franko', 'javamentorsuper@gmail.com', '5679ca7b220964824f7441e5684c88322538d45e948692f8bf7f34d54c4aa13d', 'Zo8wT2vLPZigjdr', 1),
 (27, 1, 'Felix', 'PewDiePie', 'somebodyTouchaMySpagett@mail.ua', 'c5b747ad640a0772caf141c76fdd60666803e34ee23241145d45f975e5f56e0a', '0Jex-ElZ4BwsBf0', 1),
 (28, 1, 'Ivankoasas', 'Lesyad', 'softserveceo@gmail.com', '8fa5bdb53078f633ed4e7a9e005b1dafcdd6808052aede2b160708b864c388ad', 'S5cGO1Sa-foBh3u', 0),
@@ -176,7 +176,8 @@ INSERT INTO `lesson` (`id`, `mentor_id`, `student_group_id`, `theme_id`, `lesson
 (36, 24, 12, 1, '2020-07-14 07:40:00'),
 (37, 22, 24, 2, '2012-08-01 08:00:00'),
 (41, 22, 24, 20, '2012-10-15 11:00:00'),
-(42, 22, 43, NULL, '4000-12-12 07:07:07');
+(42, 22, 43, NULL, '4000-12-12 07:07:07'),
+(43, 22, 47, 22, '2020-10-09 10:10:00');
 
 -- --------------------------------------------------------
 
@@ -231,6 +232,7 @@ CREATE TABLE `mentor_of_course` (
 INSERT INTO `mentor_of_course` (`course_id`, `mentor_id`, `id`) VALUES
 (4, 21, 19),
 (6, 17, 14),
+(6, 19, 48),
 (6, 20, 17),
 (6, 21, 20),
 (6, 22, 36),
@@ -238,7 +240,6 @@ INSERT INTO `mentor_of_course` (`course_id`, `mentor_id`, `id`) VALUES
 (6, 24, 38),
 (6, 26, 34),
 (6, 31, 47),
-(8, 19, 16),
 (8, 21, 18),
 (8, 23, 25),
 (8, 29, 46),
@@ -465,6 +466,7 @@ INSERT INTO `theme` (`id`, `name`) VALUES
 (18, 'New Theme 2222dzxcfczxczx'),
 (6, 'Node.js'),
 (21, 'OOP'),
+(22, 'Python'),
 (5, 'Spring Framework'),
 (9, 'Spring Security'),
 (19, 'Themesdasdas'),
@@ -513,7 +515,8 @@ INSERT INTO `visit` (`student_id`, `lesson_id`, `student_mark`, `presence`, `com
 (9, 37, 1, 1, 'testingnewdate', 56),
 (9, 41, 5, 1, 'testForUpdate', 57),
 (3, 42, 5, 1, 'comment', 58),
-(3, 42, 33, 1, 'string', 59);
+(3, 42, 33, 1, 'string', 59),
+(11, 43, 5, 1, 'string', 60);
 
 --
 -- Indexes for dumped tables
@@ -618,12 +621,12 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `lesson`
 --
 ALTER TABLE `lesson`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT for table `mentor`
 --
@@ -633,7 +636,7 @@ ALTER TABLE `mentor`
 -- AUTO_INCREMENT for table `mentor_of_course`
 --
 ALTER TABLE `mentor_of_course`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT for table `mentor_of_student_group`
 --
@@ -658,12 +661,12 @@ ALTER TABLE `student_of_student_group`
 -- AUTO_INCREMENT for table `theme`
 --
 ALTER TABLE `theme`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `visit`
 --
 ALTER TABLE `visit`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 --
 -- Constraints for dumped tables
 --
