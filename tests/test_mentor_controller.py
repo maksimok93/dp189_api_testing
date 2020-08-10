@@ -9,7 +9,7 @@ class TestMentorController:
 
     @pytest.mark.parametrize('email,password,expected_status_code,expected_body',
                              get_test_data('test_mentor_controller.csv'))
-    def test_all_mentors_get(self,
+    def test_all_mentors_GET(self,
                              email: str,
                              password: str,
                              expected_status_code: str,
