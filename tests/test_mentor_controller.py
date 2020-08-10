@@ -30,3 +30,17 @@ class TestMentorController:
         if response.status_code == 200:
             response = get_response('get', COURSE, credentials)
             assert response.json() == get_test_data_json(f'expectedJson/{expected_body}')
+
+    @pytest.mark.parametrize('email,password,expected_status_code',
+                             get_test_data('test_mentor_controller_put.csv'))
+    def test_update_mentor_PUT(self, email, password, expected_status_code) -> None:
+        """Parameterized test that checks response to PUT request to update mentor
+        details for a specific course for users with different access types.
+        :param user email: string
+        :param user password: string
+        :param expected_status_code: string
+        :return: None
+        """
+        credentials = {"email": email, "password": password}
+        response = get_response('put', get_mentor_url('32'), credentials, "test_mentor_controller_put.json")
+        assert response.status_code == int(expected_status_code)
