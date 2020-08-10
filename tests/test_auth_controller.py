@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-from models import post_response_body, responseDecoder, auth_controller_post_response_status_code
+from models import post_response_body, responseDecoder, auth_controller_post_response_status_code, get_response
 from tests.config import get_test_data, get_test_data_json
 from routes import AUTH
 from tests.config import get_token
@@ -43,8 +43,8 @@ class TestAuthController:
     def test_auth_controller_user(self, email: str, password: str,
                                   expected_status_code: str, expected_response: str) -> None:
         credentials = {"email": email, "password": password}
-        status_code = auth_controller_post_response_status_code(AUTH, credentials)
-        assert status_code == int(expected_status_code)
+        response = get_response('post_auth', AUTH, credentials)
+        assert response.status_code == int(expected_status_code)
 
         user = post_response_body(AUTH, credentials)
         expected_user = responseDecoder(get_test_data_json(f'expectedJson/{expected_response}'))

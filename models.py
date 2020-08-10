@@ -31,10 +31,17 @@ def get_response(request_type: str, url: str, credentials: dict, json_data=None)
     if request_type == 'get':
         response = requests.get(url=url,
                                 headers=authorization_header)
+
     if request_type == 'post':
         response = requests.post(url=url,
                                  json=get_test_data_json(f'/requestData/{json_data}'),
                                  headers=authorization_header)
+
+    if request_type == 'post_auth':
+        response = requests.post(url=url,
+                                 json=credentials,
+                                 headers=headers)
+
     if request_type == 'put':
         response = requests.put(url=url,
                                 json=get_test_data_json(f'/requestData/{json_data}'),
