@@ -1,0 +1,13 @@
+{
+  "group_id": 6,
+  "lesson_date": "2020-10-09 10:10:00",
+  "lesson_visits": [
+    {
+      "comment": "string",
+      "presence": true,
+      "student_id": 11,
+      "student_mark": 5
+    }
+  ],
+  "theme_name": "Python"
+}
