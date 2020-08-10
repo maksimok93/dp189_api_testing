@@ -24,7 +24,7 @@ def auth_controller_post_response_status_code(url, credentials):
 
 
 def get_response(request_type: str, url: str, credentials: dict, json_data=None):
-    authorization_header = {'Authorization':f'{get_token(credentials)}'}
+    authorization_header = {'Authorization': f'{get_token(credentials)}'}
 
     request_type = request_type.lower()
 
