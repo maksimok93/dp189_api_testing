@@ -1,10 +1,11 @@
 import pytest
 from routes import *
+from tests.base_test import BaseTest
 from tests.config import get_test_data, get_test_data_json
 from models import get_response
 
 
-class TestCourseController:
+class TestCourseController(BaseTest):
     @pytest.mark.parametrize('email,password,expected_status_code,expected_body',
                              get_test_data('test_course_controller.csv'))
     def test_all_courses_get(self, email: str, password: str, expected_status_code: str, expected_body: str) -> None:
