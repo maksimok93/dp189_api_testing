@@ -17,11 +17,13 @@ def post_response_body(url, credentials):
 
 
 def auth_controller_post_response_status_code(url, credentials):
-    response = requests.post(url=url, json=credentials, headers=headers)
+    response = requests.post(url=url,
+                             json=credentials,
+                             headers=headers)
     return response.status_code
 
 
-def get_response(request_type: str, url: str, credentials: str, json_data=None):
+def get_response(request_type: str, url: str, credentials: dict, json_data=None):
     authorization_header = {'Authorization':f'{get_token(credentials)}'}
 
     request_type = request_type.lower()
