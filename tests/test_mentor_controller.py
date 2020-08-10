@@ -2,9 +2,10 @@ import pytest
 from routes import *
 from tests.config import get_test_data, get_test_data_json
 from models import get_response
+from tests.base_test import BaseTest
 
 
-class TestMentorController:
+class TestMentorController(BaseTest):
     """Tests for Mentor Controller for testing users with different access rights."""
 
     @pytest.mark.parametrize('email,password,expected_status_code,expected_body',
