@@ -1,5 +1,6 @@
 import pytest
 from routes import *
+from tests.base_test import BaseTest
 from tests.config import get_test_data, get_test_data_json
 from models import get_response
 from tests.base_test import BaseTest
@@ -31,6 +32,13 @@ class TestMentorController(BaseTest):
         if response.status_code == 200:
             response = get_response('get', MENTOR, credentials)
             assert response.json() == get_test_data_json(f'expectedJson/{expected_body}')
+
+    @pytest.mark.parametrize('email,password,expected_status_code',
+                             get_test_data('test_mentor_controller_post.csv'))
+    def test_create_mentor_post(self, email: str, password: str, expected_status_code: str) -> None:
+        credentials = {"email": email, "password": password}
+        response = get_response('post', MENTOR, credentials, "test_mentor_controller_post.json")
+        assert response.status_code == int(expected_status_code)
 
     @pytest.mark.parametrize('email,password,expected_status_code',
                              get_test_data('test_mentor_controller_put.csv'))
