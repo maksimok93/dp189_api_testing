@@ -1,11 +1,11 @@
 {
-  "group_id": 6,
-  "lesson_date": "2020-10-09 10:10:00",
+  "group_id": 26,
+  "lesson_date": "2020-10-09 11:10:00",
   "lesson_visits": [
     {
       "comment": "string",
       "presence": true,
-      "student_id": 11,
+      "student_id": 12,
       "student_mark": 5
     }
   ],
