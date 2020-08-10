@@ -28,7 +28,7 @@ class TestMentorController:
         assert response.status_code == int(expected_status_code)
 
         if response.status_code == 200:
-            response = get_response('get', COURSE, credentials)
+            response = get_response('get', MENTOR, credentials)
             assert response.json() == get_test_data_json(f'expectedJson/{expected_body}')
 
     @pytest.mark.parametrize('email,password,expected_status_code',
