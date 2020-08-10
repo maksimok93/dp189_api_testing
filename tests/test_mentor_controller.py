@@ -10,7 +10,7 @@ class TestMentorController(BaseTest):
 
     @pytest.mark.parametrize('email,password,expected_status_code',
                              get_test_data('test_mentor_controller_post.csv'))
-    def test_update_mentor_post(self, email: str, password: str, expected_status_code: str) -> None:
+    def test_create_mentor_post(self, email: str, password: str, expected_status_code: str) -> None:
         credentials = {"email": email, "password": password}
         response = get_response('post', MENTOR, credentials, "test_mentor_controller_post.json")
         assert response.status_code == int(expected_status_code)
