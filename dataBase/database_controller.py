@@ -1,5 +1,5 @@
 import mysql.connector
-from tests.database_credentials import HOST, USER, PASSWORD, DATABASE
+from dataBase.database_credentials import HOST, USER, PASSWORD, DATABASE
 
 
 database_connect = mysql.connector.connect(
