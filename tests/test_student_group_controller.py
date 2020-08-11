@@ -68,8 +68,17 @@ class TestStudentGroupController(BaseTest):
         assert response.status_code == int(expected_status_code)
 
     @pytest.mark.parametrize('email,password,student_group_id,expected_status_code',
-                                 get_test_data('test_student_groups_controller_delete.csv'))
-    def test_student_group_delete(self, email: str, password: str, student_group_id: str, expected_status_code: str) -> None:
+                             get_test_data('test_student_groups_controller_delete.csv'))
+    def test_student_group_delete(self, email: str, password: str, student_group_id: str,
+                                  expected_status_code: str) -> None:
+        """Parameterized test that checks response to DELETE request to delete some student group
+        for users with different access types.
+
+        :param user email: string
+        :param user password: string
+        :param expected_status_code: string
+        :return: None
+        """
         credentials = {"email": email, "password": password}
         response = get_response('delete', get_students_group_url(f'{student_group_id}'), credentials)
         assert response.status_code == int(expected_status_code)
