@@ -27,6 +27,13 @@ class TestCourseController(BaseTest):
             assert response.json() == get_test_data_json(f'expectedJson/{expected_body}')
 
     @pytest.mark.parametrize('email,password,expected_status_code',
+                             get_test_data('test_course_controller_post.csv'))
+    def test_create_course_post(self, email: str, password: str, expected_status_code: str) -> None:
+        credentials = {"email": email, "password": password}
+        response = get_response('post', COURSE, credentials, "test_course_controller_post.json")
+        assert response.status_code == int(expected_status_code)
+
+    @pytest.mark.parametrize('email,password,expected_status_code',
                              get_test_data('test_course_controller_put.csv'))
     def test_change_course_put(self, email: str, password: str, expected_status_code: str) -> None:
         """Parameterized test that checks response to PUT request to change some course data
