@@ -1,7 +1,6 @@
 import pytest
 from routes import *
-from tests.config import get_test_data, get_test_data_json
-from models import get_response
+from tests.config import get_test_data, get_test_data_json, get_response
 from tests.base_test import BaseTest
 
 

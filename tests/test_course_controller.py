@@ -1,11 +1,12 @@
 import pytest
 from routes import *
 from tests.base_test import BaseTest
-from tests.config import get_test_data, get_test_data_json
-from models import get_response
+from tests.config import get_test_data, get_test_data_json, get_response
 
 
 class TestCourseController(BaseTest):
+    """Tests for Course Controller for testing users with different access rights."""
+
     @pytest.mark.parametrize('email,password,expected_status_code,expected_body',
                              get_test_data('test_course_controller.csv'))
     def test_all_courses_get(self, email: str, password: str, expected_status_code: str, expected_body: str) -> None:
@@ -29,6 +30,14 @@ class TestCourseController(BaseTest):
     @pytest.mark.parametrize('email,password,expected_status_code',
                              get_test_data('test_course_controller_post.csv'))
     def test_create_course_post(self, email: str, password: str, expected_status_code: str) -> None:
+        """Parameterized test that checks response to POST request to create some course
+        for users with different access types.
+
+        :param user email: string
+        :param user password: string
+        :param expected_status_code: string
+        :return: None
+        """
         credentials = {"email": email, "password": password}
         response = get_response('post', COURSE, credentials, "test_course_controller_post.json")
         assert response.status_code == int(expected_status_code)

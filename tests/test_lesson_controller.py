@@ -1,11 +1,12 @@
 import pytest
 from routes import *
 from tests.base_test import BaseTest
-from tests.config import get_test_data, get_test_data_json
-from models import get_response
+from tests.config import get_test_data, get_test_data_json, get_response
 
 
 class TestLessonController(BaseTest):
+    """Tests for Lesson Controller for testing users with different access rights."""
+
     @pytest.mark.parametrize('email,password,expected_status_code',
                              get_test_data('test_lesson_controller_get.csv'))
     def test_all_lessons_get(self, email: str, password: str, expected_status_code: str) -> None:
@@ -43,7 +44,7 @@ class TestLessonController(BaseTest):
     @pytest.mark.parametrize('email,password,expected_status_code',
                              get_test_data('test_lesson_controller_post.csv'))
     def test_create_lesson_post(self, email: str, password: str, expected_status_code: str) -> None:
-        """Parameterized test that checks response to POST request to change some lesson data
+        """Parameterized test that checks response to POST request to create some lesson
         for users with different access types.
 
         :param user email: string

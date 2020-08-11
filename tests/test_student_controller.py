@@ -1,16 +1,17 @@
 import pytest
 from routes import STUDENT, get_student_url
-from tests.config import get_test_data, get_test_data_json
-from models import get_response
+from tests.config import get_test_data, get_test_data_json, get_response
 from tests.base_test import BaseTest
 
 
 class TestStudentController(BaseTest):
+    """Tests for Lesson Student for testing users with different access rights."""
+
     @pytest.mark.parametrize('email,password,expected_status_code,expected_body',
                              get_test_data('test_student_controller_get.csv'))
     def test_get_all_students(self, email: str, password: str, expected_status_code: str, expected_body: str) -> None:
         """Parameterized test that checks response to GET request to get all students
-            for users with different access types.
+        for users with different access types.
 
         :param user email: string
         :param user password: string
