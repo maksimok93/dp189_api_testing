@@ -69,5 +69,5 @@ class TestCourseController(BaseTest):
         :return: None
         """
         credentials = {"email": email, "password": password}
-        response = get_response('delete', get_course_url(f'{course_id}'), credentials)
+        response = get_response('delete', get_students_group_url(f'{course_id}'), credentials)
         assert response.status_code == int(expected_status_code)
