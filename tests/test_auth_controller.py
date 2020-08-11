@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-from models import post_response_body, responseDecoder, auth_controller_post_response_status_code
+from models import post_response_body, response_decoder, auth_controller_post_response_status_code
 from tests.config import get_test_data, get_test_data_json
 from routes import AUTH
 from tests.config import get_token
@@ -47,5 +47,5 @@ class TestAuthController:
         assert status_code == int(expected_status_code)
 
         user = post_response_body(AUTH, credentials)
-        expected_user = responseDecoder(get_test_data_json(f'expectedJson/{expected_response}'))
+        expected_user = response_decoder(get_test_data_json(f'expectedJson/{expected_response}'))
         assert user == expected_user
