@@ -55,7 +55,7 @@ class TestMentorController(BaseTest):
         assert response.status_code == int(expected_status_code)
 
     @pytest.mark.parametrize('email,password,mentor_id,expected_status_code',
-                             get_test_data('test_course_controller_delete.csv'))
+                             get_test_data('test_mentor_controller_delete.csv'))
     def test_mentor_delete(self, email: str, password: str, mentor_id: str, expected_status_code: str) -> None:
         credentials = {"email": email, "password": password}
         response = get_response('delete', get_course_url(f'{mentor_id}'), credentials)
