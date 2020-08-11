@@ -6,13 +6,13 @@ from tests.config import get_token, get_test_data_json
 headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
 
 
-def responseDecoder(requestDict):
-    return namedtuple('AuthControllerPOSTResponse', requestDict.keys())(*requestDict.values())
+def response_decoder(request_dict):
+    return namedtuple('AuthControllerPOSTResponse', request_dict.keys())(*request_dict.values())
 
 
 def post_response_body(url, credentials):
     response = requests.post(url=url, json=credentials, headers=headers)
-    result = json.loads(response.text, object_hook=responseDecoder)
+    result = json.loads(response.text, object_hook=response_decoder)
     return result
 
 

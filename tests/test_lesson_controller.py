@@ -7,6 +7,40 @@ from models import get_response
 
 class TestLessonController(BaseTest):
     @pytest.mark.parametrize('email,password,expected_status_code',
+                             get_test_data('test_lesson_controller_get.csv'))
+    def test_all_lessons_get(self, email: str, password: str, expected_status_code: str) -> None:
+        """Parameterized test that checks response to GET request to get all lessons
+        for users with different access types.
+
+        :param user email: string
+        :param user password: string
+        :param expected_status_code: string
+        :return: None
+        """
+        credentials = {"email": email, "password": password}
+        response = get_response('get', LESSON, credentials)
+        assert response.status_code == int(expected_status_code)
+
+    @pytest.mark.parametrize('email,password,expected_status_code',
+                             get_test_data('test_lesson_controller_get.csv'))
+    def test_lesson_by_student_id_get(self, email: str, password: str, expected_status_code: str) -> None:
+        """Parameterized test that checks response to GET request to get all lessons
+        for users with different access types.
+
+        :param user email: string
+        :param user password: string
+        :param expected_status_code: string
+        :return: None
+        """
+        credentials = {"email": email, "password": password}
+        response = get_response('get', LESSON, credentials)
+        assert response.status_code == int(expected_status_code)
+
+        if response.status_code == 200:
+            response = get_response('get', get_lesson_url_by_student_id('11'), credentials)
+            assert response.json() == get_test_data_json(f'expectedJson/response_get_lesson_by_student_id.json')
+
+    @pytest.mark.parametrize('email,password,expected_status_code',
                              get_test_data('test_lesson_controller_post.csv'))
     def test_create_lesson_post(self, email: str, password: str, expected_status_code: str) -> None:
         """Parameterized test that checks response to POST request to change some lesson data
